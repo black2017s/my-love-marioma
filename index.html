@@ -1,0 +1,814 @@
+cd<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كل سنة وأنتِ معايا يا مريمتي ❤️ | موقع عيد الحب</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700;900&family=Reem+Kufi:wght@600;700&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rose: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            200: '#fecdd3',
+                            300: '#fda4af',
+                            400: '#fb7185',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            700: '#be123c',
+                            800: '#9f1239',
+                            900: '#881337',
+                        },
+                        cream: '#fffaf6',
+                        gold: '#d4af37'
+                    },
+                    fontFamily: {
+                        tajawal: ['Tajawal', 'sans-serif'],
+                        amiri: ['Amiri', 'serif'],
+                        reem: ['Reem Kufi', 'sans-serif'],
+                        cursive: ['Alex Brush', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #fffaf6;
+            overflow-x: hidden;
+            user-select: none;
+        }
+
+        /* Glassmorphism Effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        /* Card Flip Styles */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+
+        .transform-style-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+
+        /* Floating Hearts Particles */
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0.7) rotate(0deg);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-10vh) scale(1.2) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            animation: floatUp 6s linear infinite;
+            z-index: 1;
+        }
+
+        /* Polaroid Memory Effect */
+        .polaroid {
+            background: white;
+            padding: 12px 12px 24px 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .polaroid:hover {
+            transform: translateY(-8px) rotate(1deg) scale(1.02);
+            box-shadow: 0 20px 30px -10px rgba(244, 63, 94, 0.25);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #fff1f2;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #fda4af;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f43f5e;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen text-slate-800 relative bg-gradient-to-b from-rose-50 via-cream to-rose-100/60 pb-16">
+
+    <!-- 🔒 1. شاشة القفل بكلمة السر (الرقم السري الافتراضي: 1811) -->
+    <div id="lockScreen"
+        class="fixed inset-0 bg-rose-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
+        <div
+            class="bg-white rounded-3xl p-8 max-w-md w-full text-center shadow-2xl border-4 border-rose-200 relative overflow-hidden animate-fade-in">
+            <div
+                class="w-20 h-20 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl shadow-inner animate-bounce">
+                <i class="fa-solid fa-heart-lock"></i>
+            </div>
+            <h2 class="text-3xl font-bold font-reem text-rose-700 mb-2">مفاجأة خاصة جداً ❤️</h2>
+            <p class="text-slate-600 text-sm mb-6">اكتبي كلمة السر لرؤية هديتك الخاصة</p>
+
+            <div class="space-y-4">
+                <input type="password" id="passInput" placeholder="أدخلي كلمة السر..."
+                    class="w-full text-center px-4 py-3 rounded-2xl border-2 border-rose-200 focus:border-rose-500 outline-none text-lg tracking-widest font-bold text-rose-800 bg-rose-50/30">
+                <p id="passError" class="text-rose-600 text-xs font-bold hidden">كلمة السر غير صحيحة، حاولي مرة أخرى!
+                    🗝️</p>
+                <button onclick="unlockSite()"
+                    class="w-full bg-gradient-to-r from-rose-600 to-rose-500 hover:from-rose-700 hover:to-rose-600 text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-rose-300/50 transition duration-200 text-base">
+                    افتحي المفاجأة ✨
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Dynamic Floating Hearts Container -->
+    <div id="hearts-container" class="fixed inset-0 pointer-events-none z-0"></div>
+
+    <!-- 🎵 2. مشغل الموسيقى العائم -->
+    <div class="fixed top-5 left-5 z-40 flex items-center gap-2">
+        <button id="musicToggle" onclick="toggleAudio()"
+            class="glass w-12 h-12 rounded-full flex items-center justify-center text-rose-600 shadow-lg hover:scale-110 transition-transform active:scale-95 border border-rose-200"
+            title="تشغيل / إيقاف الموسيقى">
+            <i id="musicIcon" class="fas fa-music text-lg"></i>
+        </button>
+        <span id="musicStatus"
+            class="text-xs bg-white/80 text-rose-700 px-3 py-1 rounded-full shadow-sm glass hidden md:inline-block font-medium">موسيقى
+            هادئة</span>
+        <audio id="bgMusic" loop
+            src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-piano-112181.mp3"></audio>
+    </div>
+
+    <!-- ⚙️ 3. لوحة التحكم والروابط السرية (تختفي تماماً للشريكة في وضع #view) -->
+    <div id="adminControls" class="fixed top-5 right-5 z-40 flex items-center gap-2">
+        <button onclick="copyViewUrl()"
+            class="glass px-3.5 py-2 rounded-full flex items-center gap-2 text-rose-700 font-bold text-xs shadow-lg hover:scale-105 transition-transform border border-rose-200"
+            title="نسخ رابط العرض للشريكة">
+            <i class="fas fa-share-nodes"></i>
+            <span class="hidden sm:inline">نسخ رابط العرض للشريكة (#view)</span>
+        </button>
+        <button onclick="openConfigModal()"
+            class="glass w-12 h-12 rounded-full flex items-center justify-center text-rose-700 shadow-lg hover:scale-110 transition-transform border border-rose-200"
+            title="لوحة التعديل والتخصيص">
+            <i class="fas fa-sliders text-lg"></i>
+        </button>
+    </div>
+
+    <!-- Container Content -->
+    <main class="relative z-10 max-w-4xl mx-auto px-4 pt-12 md:pt-16">
+
+        <!-- ================= HERO LANDING SECTION ================= -->
+        <section class="text-center py-8 md:py-12 flex flex-col items-center justify-center min-h-[70vh]">
+            <div
+                class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-100/90 border border-rose-200 text-rose-700 text-sm font-medium mb-6 shadow-sm">
+                <i class="fas fa-sparkles text-amber-500"></i>
+                <span id="displaySubTitle">عيد الحب المصري 4 نوفمبر، اقتراب مرور عام على بداية حكايتنا</span>
+                <i class="fas fa-sparkles text-amber-500"></i>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold text-slate-800 tracking-tight leading-tight mb-4">
+                كل سنة وأنتِ معايا يا <span id="displayName"
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-rose-500 font-reem underline decoration-rose-300 decoration-wavy">مريمتي</span>
+                ❤️
+            </h1>
+
+            <p id="displayBio"
+                class="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed mt-2 mb-8 font-light">
+                اجمل من رات عيناي، سيدة النساء جميعا، حبيبة قلبي، اريد أن اخبركِ أنتِ لستِ فقط بحبيبة، أنت أنسي وونسي،
+                ملجأي وملاذي الامن، أنتِ الأمن والامان، سكني، والوطن والبيت، انتِ بنيتي، طفلتي الحبيبة وأمي، وصاحبتي
+                رفيقة دربي، أنتِ الحياة لي.
+            </p>
+
+            <!-- ⏳ العداد التنازلي الحقيقي من تاريخ بداية الحكاية -->
+            <div
+                class="glass p-5 rounded-3xl shadow-xl border border-rose-100 max-w-md w-full mb-8 text-center relative overflow-hidden">
+                <p class="text-xs font-bold uppercase tracking-widest text-rose-600 mb-3">الوقت اللي عشناه مع بعض سوا ❤️
+                </p>
+                <div class="grid grid-cols-4 gap-2 text-center" id="counter">
+                    <div class="bg-rose-50/80 p-2.5 rounded-2xl border border-rose-100"><span id="days"
+                            class="block font-bold text-2xl text-rose-600">0</span><span
+                            class="text-[11px] text-slate-500">يوم</span></div>
+                    <div class="bg-rose-50/80 p-2.5 rounded-2xl border border-rose-100"><span id="hours"
+                            class="block font-bold text-2xl text-rose-600">0</span><span
+                            class="text-[11px] text-slate-500">ساعة</span></div>
+                    <div class="bg-rose-50/80 p-2.5 rounded-2xl border border-rose-100"><span id="minutes"
+                            class="block font-bold text-2xl text-rose-600">0</span><span
+                            class="text-[11px] text-slate-500">دقيقة</span></div>
+                    <div class="bg-rose-50/80 p-2.5 rounded-2xl border border-rose-100"><span id="seconds"
+                            class="block font-bold text-2xl text-rose-600">0</span><span
+                            class="text-[11px] text-slate-500">ثانية</span></div>
+                </div>
+            </div>
+
+            <a href="#valQuestionBox"
+                class="flex flex-col items-center gap-1 text-rose-500 hover:text-rose-700 transition-colors">
+                <span class="text-xs font-bold">انزلي للمفاجأة</span>
+                <i class="fas fa-chevron-down animate-bounce text-base"></i>
+            </a>
+        </section>
+
+        <!-- ================= 4. سؤال الفلانتين المشاكس ================= -->
+        <section id="valQuestionBox" class="py-12 my-6 scroll-mt-10">
+            <div
+                class="glass rounded-3xl p-8 sm:p-12 text-center shadow-2xl border border-rose-200 relative overflow-hidden">
+                <div
+                    class="w-16 h-16 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl shadow-inner">
+                    <i class="fas fa-heart"></i>
+                </div>
+
+                <h2 class="text-2xl sm:text-4xl font-bold text-slate-800 mb-4 font-reem">
+                    بتحبيني يا مريمتي؟ 🥺❤️
+                </h2>
+
+                <div class="relative min-h-[100px] flex items-center justify-center gap-6 flex-wrap"
+                    id="buttons-container">
+                    <button id="yes-btn" onclick="acceptLove()"
+                        class="bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-rose-300/50 transform transition text-lg flex items-center gap-2">
+                        <i class="fas fa-heart text-amber-200"></i> أكيد طبعاً بموت فيك! 🥰
+                    </button>
+                    <button id="noBtn" onmouseover="moveNoBtn()" onclick="moveNoBtn()"
+                        class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold px-6 py-3 rounded-full transition-all text-base border border-slate-300 shadow-sm">
+                        لا 😜
+                    </button>
+                </div>
+
+                <div id="loveAccepted"
+                    class="hidden mt-6 p-6 bg-rose-100/90 rounded-2xl border border-rose-300 text-rose-800 animate-fade-in">
+                    <i class="fas fa-grin-hearts text-4xl mb-2 text-rose-600 block"></i>
+                    <h3 class="text-2xl font-bold font-reem mb-1">عارف والله! وأنا بموت فيكي وبحبك أكتر بكتير! 💖🎉</h3>
+                    <p class="text-slate-700 text-sm">كملي باقي المفاجآت والرسائل تحت...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 5. بطاقات أسباب الحب (الـ 6 كاملة) ================= -->
+        <section id="reasons-section" class="py-12 my-6">
+            <div class="text-center mb-10">
+                <span class="text-rose-500 font-semibold text-xs tracking-widest uppercase">رسائل من أعماق قلبي</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 font-reem mt-1">ليه بحبك؟ ✨</h2>
+                <p class="text-slate-500 text-xs mt-1">اضغطي على البطاقة لاكتشاف السر خلفها</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="reasonsGrid">
+                <!-- سيتم توليد البطاقات الـ 6 بالكامل عبر JS -->
+            </div>
+        </section>
+
+        <!-- ================= 6. معرض الصور البولاروايد (Polaroid Gallery) ================= -->
+        <section id="gallery-section" class="py-12 my-6">
+            <div class="text-center mb-10">
+                <span class="text-rose-500 font-semibold text-xs tracking-widest uppercase">أجمل لحظاتنا</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 font-reem mt-1">معرض ذكرياتنا المصورة 📸</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-2" id="galleryGrid">
+                <!-- الصور المحملة ديناميكياً -->
+            </div>
+        </section>
+
+        <!-- ================= 7. الاختبار التفاعلي (Quiz) ================= -->
+        <!--
+        <section id="quiz-section" class="py-12 my-6">
+            <div class="glass rounded-3xl p-6 sm:p-10 shadow-2xl border border-rose-200 relative text-center">
+                <span class="text-rose-500 font-semibold text-xs tracking-widest uppercase">اختبار حكايتنا 🧩</span>
+                <h2 class="text-2xl sm:text-4xl font-bold text-slate-800 font-reem mt-1 mb-6">فاكرة تفاصيلنا؟ ❤️</h2>
+
+                <div id="quizContainer" class="max-w-xl mx-auto text-right space-y-6">
+                   --> <!-- أسئلة الكويز المخصصة -->
+        <!--   </div> 
+            </div>
+        </section> -->
+
+        <!-- ================= 8. رسالة الحب الطويلة (Love Letter) ================= -->
+        <section id="letter-section" class="py-12 my-6">
+            <div
+                class="glass rounded-3xl p-8 sm:p-12 shadow-2xl border border-rose-200 relative bg-gradient-to-br from-white/95 via-rose-50/60 to-white/95">
+                <div class="max-w-2xl mx-auto">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-envelope-open-text text-4xl text-rose-500 mb-2"></i>
+                        <h2 class="text-3xl font-bold font-reem text-slate-800">رسالة خاصة لكِ 💌</h2>
+                    </div>
+
+                    <div class="prose max-w-none text-slate-700 font-amiri text-lg sm:text-xl leading-relaxed text-justify space-y-4 bg-white/70 p-6 sm:p-8 rounded-2xl border border-rose-100 shadow-inner"
+                        id="displayLetter">
+                        <!-- نص الرسالة الطويلة -->
+                    </div>
+
+                    <div class="mt-6 text-left">
+                        <p class="font-cursive text-3xl text-rose-600 font-bold" id="displaySignature">بحبك دايماً ❤️
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center py-6 text-slate-400 text-xs border-t border-rose-100 mt-8">
+            <p>صُنع بكل حب ❤️ بمناسبة عيد الحب المصري</p>
+        </footer>
+
+    </main>
+
+    <!-- ================= 🛠️ لوحة التعديل والتخصيص Modal ================= -->
+    <div id="configModal"
+        class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div
+            class="bg-white rounded-3xl max-w-2xl w-full max-h-[88vh] overflow-y-auto p-6 shadow-2xl border border-rose-200 relative text-right">
+            <button onclick="closeConfigModal()"
+                class="absolute top-4 left-4 text-slate-400 hover:text-slate-600 text-2xl w-8 h-8 rounded-full flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <h2 class="text-2xl font-bold font-reem text-rose-600 mb-6 flex items-center gap-2">
+                <i class="fa-solid fa-sliders"></i> لوحة التخصيص الكاملة
+            </h2>
+
+            <!-- البيانات الأساسية -->
+            <div class="space-y-3 mb-6 bg-rose-50/50 p-4 rounded-2xl border border-rose-100">
+                <h3 class="font-bold text-rose-700 text-sm">1. البيانات الأساسية</h3>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">اسم الحبيبة/الشريكة</label>
+                    <input type="text" id="cfgName" class="w-full p-2.5 rounded-xl border border-slate-200 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">تاريخ بداية حكايتكم</label>
+                    <input type="date" id="cfgDate" class="w-full p-2.5 rounded-xl border border-slate-200 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">العنوان الفرعي العلوي</label>
+                    <input type="text" id="cfgSubTitle" class="w-full p-2.5 rounded-xl border border-slate-200 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">الوصف العاطفي تحت الاسم</label>
+                    <textarea id="cfgBio" rows="2"
+                        class="w-full p-2.5 rounded-xl border border-slate-200 text-sm"></textarea>
+                </div>
+            </div>
+
+            <!-- رفع صور الذكريات -->
+            <div class="space-y-3 mb-6 bg-rose-50/50 p-4 rounded-2xl border border-rose-100">
+                <h3 class="font-bold text-rose-700 text-sm"><i class="fas fa-images me-1"></i> 2. رفع صور من الجهاز
+                    للمعرض</h3>
+                <div id="cfgPhotoInputs" class="space-y-3"></div>
+            </div>
+
+            <!-- بطاقات الرسائل الـ 6 -->
+            <div class="space-y-3 mb-6 bg-rose-50/50 p-4 rounded-2xl border border-rose-100">
+                <div class="flex justify-between items-center">
+                    <h3 class="font-bold text-rose-700 text-sm">3. بطاقات الرسائل الصندوقية (ليه بحبك؟)</h3>
+                    <button type="button" onclick="addReasonField()"
+                        class="bg-rose-600 text-white text-xs px-3 py-1 rounded-lg font-bold hover:bg-rose-700">+ إضافة
+                        بطاقة</button>
+                </div>
+                <div id="cfgReasonsList" class="space-y-3"></div>
+            </div>
+
+            <!-- إضافة وإدارة أسئلة الكويز -->
+            <div class="space-y-3 mb-6 bg-rose-50/50 p-4 rounded-2xl border border-rose-100">
+                <div class="flex justify-between items-center">
+                    <h3 class="font-bold text-rose-700 text-sm"><i class="fas fa-question-circle me-1"></i> 4. أسئلة
+                        الاختبار التفاعلي</h3>
+                    <button type="button" onclick="addQuizField()"
+                        class="bg-rose-600 text-white text-xs px-3 py-1 rounded-lg font-bold hover:bg-rose-700">+ إضافة
+                        سؤال جديد</button>
+                </div>
+                <div id="cfgQuizList" class="space-y-4"></div>
+            </div>
+
+            <!-- رسالة الحب الطويلة -->
+            <div class="space-y-3 mb-6 bg-rose-50/50 p-4 rounded-2xl border border-rose-100">
+                <h3 class="font-bold text-rose-700 text-sm">5. الرسالة الخاصة الطويلة</h3>
+                <textarea id="cfgLetter" rows="4"
+                    class="w-full p-2.5 rounded-xl border border-slate-200 text-sm"></textarea>
+                <input type="text" id="cfgSignature" placeholder="التوقيع"
+                    class="w-full p-2.5 rounded-xl border border-slate-200 text-sm font-bold">
+            </div>
+
+            <div class="flex justify-end gap-3 border-t pt-4">
+                <button onclick="closeConfigModal()" class="px-5 py-2.5 text-slate-500 font-bold text-sm">إلغاء</button>
+                <button onclick="saveConfig()"
+                    class="bg-rose-600 hover:bg-rose-700 text-white px-6 py-2.5 rounded-xl font-bold text-sm shadow-md">
+                    حفظ التعديلات ✨
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const CORRECT_PASSWORD = "marioma";
+
+        // 📦 البيانات الأساسية المدمجة بالكامل بدون أي اختصار
+        let appData = JSON.parse(localStorage.getItem('loveDataFull_v2')) || {
+            name: "مريمتي ❤️",
+            startDate: "2025-11-18",
+            subTitle: "عيد الحب المصري 4 نوفمبر، اقتراب مرور عام على بداية حكايتنا",
+            bio: " اجمل من رات عيناي، سيدة النساء جميعا، حبيبة قلبي، اريد أن اخبركِ أنتِ لستِ فقط بحبيبة، أنت أنسي وونسي، ملجأي وملاذي الامن، أنتِ الأمن والامان، سكني، والوطن والبيت، انتِ بنيتي، طفلتي الحبيبة وأمي، وصاحبتي رفيقة دربي، أنتِ الحياة لي.",
+            letter: `لا أعرف كيف استطعتِ أن تصلي إلى هذا المكان البعيد في داخلي، ذلك المكان الذي لم يستطع أحدٌ قبلكِ أن يبلغه، لكنني أعرف أنكِ منذ جئتِ، لم تعودي شخصًا أحبه فحسب، بل أصبحتِ شيئًا مني، شيئًا لا أستطيع تخيّل نفسي من دونه.
+
+أحبكِ بطريقةٍ تعجز الكلمات عن احتوائها، وأجدني كلما حاولتُ أن أصف لكِ ما أشعر به، اكتشفتُ أن في قلبي كلامًا أكبر من أن يُقال، وأن لكِ من روحي ما لن تستطيع الحروف الوصول إليه.
+
+وفي عينيكِ، ثمة عالمٌ لا أرغب في مغادرته، وفي صوتكِ طمأنينةٌ لا أعرف كيف كنتُ أعيش من دونها، وفي قربكِ شعورٌ يجعلني أتصالح مع كلِّ ما أتعبني في هذه الحياة. كأنكِ جئتِ لتخبريني أن للدنيا وجهًا آخر، وأن القلب مهما أثقلته الأيام، يستطيع أن يجد سكينته في إنسانٍ واحد.
+
+أريدكِ في أيامي العادية قبل أيامي الجميلة، في تفاصيل الحياة الصغيرة قبل أحلامها الكبيرة، في الأوقات التي نضحك فيها بلا سبب، وفي الأيام التي لا نملك فيها سوى الصمت. أريد أن أكون الشخص الذي تلجئين إليه حين تضيق بكِ الدنيا، والذي تجدين عنده قلبًا لا يطالبكِ بأن تكوني بخير طوال الوقت، بل يحبكِ حتى في اللحظات التي تعجزين فيها عن فهم نفسكِ.
+
+لستُ أريدكِ حكايةً جميلةً أعبرها ثم أحتفظ بذكراها، بل أريدكِ الحكاية التي أعيشها، والرفيقة التي أشاركها الطريق، والوجه الذي أبحث عنه كلما عدتُ من تعب الحياة.
+
+أحبكِ، لا لأنني لا أرى في الدنيا سواكِ، بل لأنني، رغم كل ما فيها، أجد فيكِ شيئًا لا يشبه أحدًا، ولأن قلبي حين اختاركِ، شعر للمرة الأولى أنه لا يبحث عن شيءٍ آخر.
+
+وإن سألتِني يومًا عمّا أتمناه من هذه الحياة، فلن أطلب منها أن تكون خاليةً من المتاعب، ولا أن تمنحني كلَّ ما أحلم به؛ يكفيني أن تمنحنا فرصةً لنعيش معًا، أن أطمئن عليكِ كل ليلة، وأن أراكِ في الغد، وأن نمضي في العمر كتفًا إلى كتف، مهما تغيّرت بنا الأيام.
+
+فأنا لا أحبكِ للحظةٍ جميلةٍ تجمعني بكِ، أنا أحبكِ للعمر الذي أتمنى أن أقضيه معكِ، ولكلِّ يومٍ لم يأتِ بعد، وما زلتُ أحلم أن تكوني فيه بجانبي. ♥️🫂`,
+            signature: "بحبك دايماً ❤️",
+            photos: [
+                { url: "images/WhatsApp Image 2026-11-04 at 1.01.11 AM.jpeg", caption: " أول لحظة لينا سوى وأول ضحكة مع بعض ✨" },
+                { url: "images/WhatsApp Image 2026-11-04 at 1.01.11 AM(1).jpeg", caption: "   أول مرة ارويح وياكِ الجامعة ❤️" },
+                { url: "images/WhatsApp Image 2026-11-04 at 1.01.12 AM.jpeg", caption: "مع بعض على طول ♥️♥️🫂" }
+            ],
+            reasons: [
+                { title: "ضحكتك وابتسامتك", text: "بتخليني أنسى كل الهموم، بحس قلبي بيطير والفرحة مش سيعاني لما بشوفك مبسوطة 💜💜💜❤️❤️" },
+                { title: "روحك وقلبك", text: "حنيتك واهتمامك بالتفاصيل الصغيرة ، احتواؤك ليا تقبلك ليا!" },
+                { title: "عيونك", text: "عيونك الي دائما بغرق فيهم وانا واحد مبيعرفش يعوم بس الغرق في عيونك من احب الحاجات لقلبي، عيونك دائما بتسحرني ❤️❤️❤️❤️❤️💜" },
+                { title: "بشتاق لصوتك", text: "صوتك بيخليني اعدا او لما بكلمك بحس كل حاجه جوايا هديت وانا بقولك بقيت اهدى، لما بكون عايز اهرب من حاجه او تعبان ومرهق باجي اكلمك بكون عايز اكلمك اه مش بحكي، بس لما بكلمك بهدا كل حاجه جوايا بتهدا بجد." },
+                { title: "أمانك ووجودك", text: "بحس براحة نفسية عجيبة لمجرد إني عارف إنك موجودة معايا. بكون عايز اشوفك دائما بجد مش بكون عايز ارخم او أضايقك بس أنا بكون عايز اشوفك بكون محتاج ده. لما بشوفك كل التعب بيروح وبيهون، بحس ان في حد نفسي اهدا معاه، حقيقي مقدر انك في كلية صعبة ورخمه ومشعوله، مقدر ده بجد وعلى قلبي زي العسل عشان عارف انك هتقولي كدا." },
+                { title: "روحك", text: "لما شوفتك اول مرة حسيت اني اعرفك من سنين وان في كلام بينا وحاجات كتير بس كنت بقول لا وبقنع نفسي هي مش هتبصلك، كنت بكون مبسوط لما بشوفك والابتسامة بتكون على وشي لوحدها." }
+            ],
+            quiz: [
+                {
+                    q: "فاكرة اول خروجة لينا سوا كانت فين؟",
+                    options: ["الجامعة", "سيتي مول", "الصيدلية", "بن مصر"],
+                    correct: 0
+                }
+            ]
+        };
+
+        let audioPlaying = false;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            checkViewMode();
+            renderPage();
+            createHeartsParticles();
+            setInterval(updateCounter, 1000);
+            updateCounter();
+        });
+
+        // التحقق من الوضع (#view)
+        function checkViewMode() {
+            if (window.location.hash.includes('view')) {
+                document.getElementById('adminControls').classList.add('hidden');
+            }
+        }
+
+        // قفل كلمة السر
+        function unlockSite() {
+            const val = document.getElementById('passInput').value;
+            if (val === CORRECT_PASSWORD) {
+                document.getElementById('lockScreen').classList.add('hidden');
+                triggerConfetti();
+            } else {
+                document.getElementById('passError').classList.remove('hidden');
+            }
+        }
+
+        // نسخ رابط العرض لشريكة (#view)
+        function copyViewUrl() {
+            const baseUrl = window.location.href.split('#')[0];
+            const url = baseUrl + '#view';
+            const temp = document.createElement('input');
+            temp.value = url;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            alert("تم نسخ رابط العرض الخاص بالشريكة بنجاح! عند فتح هذا الرابط لن تظهر أي أزرار أو خيارات للتعديل.");
+        }
+
+        function renderPage() {
+            document.getElementById('displayName').innerText = appData.name;
+            document.getElementById('displaySubTitle').innerText = appData.subTitle;
+            document.getElementById('displayBio').innerText = appData.bio;
+            document.getElementById('displayLetter').innerText = appData.letter;
+            document.getElementById('displaySignature').innerText = appData.signature;
+
+            // Render Reasons Cards
+            const reasonsGrid = document.getElementById('reasonsGrid');
+            reasonsGrid.innerHTML = appData.reasons.map((r, idx) => `
+                <div class="perspective-1000 h-48 cursor-pointer group" onclick="this.querySelector('.transform-style-3d').classList.toggle('rotate-y-180')">
+                    <div class="transform-style-3d relative w-full h-full duration-500">
+                        <div class="absolute inset-0 bg-white/90 rounded-2xl p-6 flex flex-col items-center justify-center text-center shadow-md border border-rose-100 backface-hidden group-hover:border-rose-300 transition-colors">
+                            <div class="w-12 h-12 rounded-full bg-rose-100 text-rose-500 flex items-center justify-center text-xl mb-3">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h3 class="font-bold text-slate-800 text-lg font-reem">${r.title}</h3>
+                            <span class="text-xs text-rose-400 mt-2 flex items-center gap-1">اقرأي الرسالة <i class="fas fa-arrow-left text-[10px]"></i></span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-br from-rose-500 to-rose-600 text-white rounded-2xl p-6 flex flex-col items-center justify-center text-center shadow-xl rotate-y-180 backface-hidden overflow-y-auto">
+                            <p class="text-xs sm:text-sm font-medium leading-relaxed">${r.text}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Render Photos
+            const galleryGrid = document.getElementById('galleryGrid');
+            galleryGrid.innerHTML = appData.photos.map((p, idx) => `
+                <div class="polaroid rounded-lg ${idx % 2 === 0 ? 'rotate-1' : '-rotate-2'}">
+                    <div class="w-full h-52 overflow-hidden rounded mb-3 bg-slate-100">
+                        <img src="${p.url}" alt="${p.caption}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <p class="text-center font-amiri font-bold text-slate-700 text-lg">${p.caption}</p>
+                </div>
+            `).join('');
+
+            // Render Quiz
+            renderQuiz();
+        }
+
+        function renderQuiz() {
+            const container = document.getElementById('quizContainer');
+            if (!container) return;
+            if (!appData.quiz || appData.quiz.length === 0) {
+                container.innerHTML = '<p class="text-center text-slate-400 text-sm">لا توجد أسئلة حالياً.</p>';
+                return;
+            }
+
+            container.innerHTML = appData.quiz.map((q, qIdx) => `
+                <div class="bg-white/80 p-6 rounded-2xl border border-rose-100 shadow-sm">
+                    <p class="font-bold text-lg text-slate-800 mb-4">${qIdx + 1}. ${q.q}</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        ${q.options.map((opt, oIdx) => `
+                            <button onclick="checkAnswer(this, ${oIdx === q.correct})" class="bg-rose-50 hover:bg-rose-100 text-rose-800 p-3 rounded-xl border border-rose-200 transition text-sm font-bold text-right">
+                                ${opt}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function checkAnswer(btn, isCorrect) {
+            if (isCorrect) {
+                btn.className = "bg-emerald-500 text-white p-3 rounded-xl font-bold text-sm shadow text-right";
+                triggerConfetti();
+            } else {
+                btn.className = "bg-rose-500 text-white p-3 rounded-xl text-sm font-bold text-right";
+            }
+        }
+
+        function moveNoBtn() {
+            const btn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth < 500 ? 120 : 250) - 80;
+            const y = Math.random() * 80 - 40;
+            btn.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+        function acceptLove() {
+            document.getElementById('buttons-container').classList.add('hidden');
+            document.getElementById('loveAccepted').classList.remove('hidden');
+            triggerConfetti();
+        }
+
+        function triggerConfetti() {
+            confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
+        }
+
+        function updateCounter() {
+            const start = new Date(appData.startDate);
+            const now = new Date();
+            const diff = now - start;
+
+            if (diff > 0) {
+                document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+                document.getElementById('hours').innerText = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                document.getElementById('minutes').innerText = Math.floor((diff / 1000 / 60) % 60);
+                document.getElementById('seconds').innerText = Math.floor((diff / 1000) % 60);
+            }
+        }
+
+        function toggleAudio() {
+            const audio = document.getElementById('bgMusic');
+            const icon = document.getElementById('musicIcon');
+            if (audioPlaying) {
+                audio.pause();
+                icon.className = "fas fa-music text-lg";
+                audioPlaying = false;
+            } else {
+                audio.play();
+                icon.className = "fas fa-pause text-lg";
+                audioPlaying = true;
+            }
+        }
+
+        function createHeartsParticles() {
+            const container = document.getElementById('hearts-container');
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart text-xl';
+                heart.innerText = '❤️';
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.animationDuration = `${4 + Math.random() * 4}s`;
+                heart.style.animationDelay = `${Math.random() * 3}s`;
+                container.appendChild(heart);
+            }
+        }
+
+        // Modal Config Handlers
+        function openConfigModal() {
+            document.getElementById('cfgName').value = appData.name;
+            document.getElementById('cfgDate').value = appData.startDate;
+            document.getElementById('cfgSubTitle').value = appData.subTitle;
+            document.getElementById('cfgBio').value = appData.bio;
+            document.getElementById('cfgLetter').value = appData.letter;
+            document.getElementById('cfgSignature').value = appData.signature;
+
+            // Photo inputs
+            const photoContainer = document.getElementById('cfgPhotoInputs');
+            photoContainer.innerHTML = appData.photos.map((p, idx) => `
+                <div class="p-3 bg-white rounded-xl border border-slate-200 space-y-2">
+                    <label class="block text-xs font-bold">صورة #${idx + 1}</label>
+                    <input type="file" accept="image/*" onchange="handleImageUpload(event, ${idx})" class="w-full text-xs">
+                    <input type="text" id="pCap-${idx}" value="${p.caption}" placeholder="التعليق على الصورة" class="w-full p-2 border rounded-lg text-xs">
+                </div>
+            `).join('');
+
+            // Reasons inputs
+            renderConfigReasons();
+
+            // Quiz inputs
+            renderConfigQuiz();
+
+            document.getElementById('configModal').classList.remove('hidden');
+        }
+
+        function renderConfigReasons() {
+            const list = document.getElementById('cfgReasonsList');
+            list.innerHTML = appData.reasons.map((r, i) => `
+                <div class="border p-3 rounded-xl bg-white space-y-2 relative">
+                    <button type="button" onclick="removeReasonField(${i})" class="absolute top-2 left-2 text-red-500 text-xs font-bold"><i class="fas fa-trash"></i></button>
+                    <input type="text" value="${r.title}" placeholder="عنوان البطاقة" class="r-title w-full p-2 border rounded-lg text-xs font-bold">
+                    <textarea placeholder="محتوى الرسالة" class="r-text w-full p-2 border rounded-lg text-xs" rows="2">${r.text}</textarea>
+                </div>
+            `).join('');
+        }
+
+        function addReasonField() {
+            appData.reasons.push({ title: "عنوان جديد", text: "نص الرسالة..." });
+            renderConfigReasons();
+        }
+
+        function removeReasonField(idx) {
+            appData.reasons.splice(idx, 1);
+            renderConfigReasons();
+        }
+
+        function renderConfigQuiz() {
+            const list = document.getElementById('cfgQuizList');
+            list.innerHTML = appData.quiz.map((q, i) => `
+                <div class="border p-4 rounded-xl bg-white space-y-2 relative border-rose-200 shadow-sm">
+                    <button type="button" onclick="removeQuizField(${i})" class="absolute top-3 left-3 text-red-500 hover:text-red-700 text-xs font-bold"><i class="fas fa-trash"></i> حذف السؤال</button>
+                    <label class="block text-xs font-bold text-slate-700">السؤال #${i + 1}</label>
+                    <input type="text" value="${q.q}" placeholder="اكتب نص السؤال..." class="q-title w-full p-2 border rounded-lg text-xs font-bold">
+                    
+                    <div class="grid grid-cols-2 gap-2 pt-2">
+                        <input type="text" value="${q.options[0] || ''}" placeholder="الخيار 1" class="q-opt-0 w-full p-2 border rounded-lg text-xs">
+                        <input type="text" value="${q.options[1] || ''}" placeholder="الخيار 2" class="q-opt-1 w-full p-2 border rounded-lg text-xs">
+                        <input type="text" value="${q.options[2] || ''}" placeholder="الخيار 3" class="q-opt-3 w-full p-2 border rounded-lg text-xs">
+                        <input type="text" value="${q.options[3] || ''}" placeholder="الخيار 4" class="q-opt-4 w-full p-2 border rounded-lg text-xs">
+                    </div>
+
+                    <div class="pt-2">
+                        <label class="block text-xs font-bold mb-1 text-slate-600">رقم الإجابة الصحيحة:</label>
+                        <select class="q-correct w-full p-2 border rounded-lg text-xs">
+                            <option value="0" ${q.correct === 0 ? 'selected' : ''}>الخيار الأول (1)</option>
+                            <option value="1" ${q.correct === 1 ? 'selected' : ''}>الخيار الثاني (2)</option>
+                            <option value="2" ${q.correct === 2 ? 'selected' : ''}>الخيار الثالث (3)</option>
+                            <option value="3" ${q.correct === 3 ? 'selected' : ''}>الخيار الرابع (4)</option>
+                        </select>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addQuizField() {
+            appData.quiz.push({
+                q: "سؤال جديد...",
+                options: ["خيار 1", "خيار 2", "خيار 3", "خيار 4"],
+                correct: 0
+            });
+            renderConfigQuiz();
+        }
+
+        function removeQuizField(idx) {
+            appData.quiz.splice(idx, 1);
+            renderConfigQuiz();
+        }
+
+        function handleImageUpload(e, idx) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (uploadEvent) {
+                    appData.photos[idx].url = uploadEvent.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function closeConfigModal() {
+            document.getElementById('configModal').classList.add('hidden');
+        }
+
+        function saveConfig() {
+            appData.name = document.getElementById('cfgName').value;
+            appData.startDate = document.getElementById('cfgDate').value;
+            appData.subTitle = document.getElementById('cfgSubTitle').value;
+            appData.bio = document.getElementById('cfgBio').value;
+            appData.letter = document.getElementById('cfgLetter').value;
+            appData.signature = document.getElementById('cfgSignature').value;
+
+            // Captions
+            appData.photos.forEach((p, idx) => {
+                const capInput = document.getElementById(`pCap-${idx}`);
+                if (capInput) p.caption = capInput.value;
+            });
+
+            // Reasons
+            const titles = document.querySelectorAll('.r-title');
+            const texts = document.querySelectorAll('.r-text');
+            appData.reasons = [];
+            titles.forEach((t, i) => {
+                if (t.value.trim()) {
+                    appData.reasons.push({ title: t.value, text: texts[i].value });
+                }
+            });
+
+            // Quiz
+            const qTitles = document.querySelectorAll('.q-title');
+            const newQuiz = [];
+            qTitles.forEach((tInput, i) => {
+                const parent = tInput.closest('.border');
+                const opt0 = parent.querySelector('.q-opt-0').value;
+                const opt1 = parent.querySelector('.q-opt-1').value;
+                const opt2 = parent.querySelector('.q-opt-2').value;
+                const opt3 = parent.querySelector('.q-opt-3').value;
+                const correct = parseInt(parent.querySelector('.q-correct').value);
+
+                if (tInput.value.trim()) {
+                    newQuiz.push({
+                        q: tInput.value,
+                        options: [opt0, opt1, opt2, opt3],
+                        correct: correct
+                    });
+                }
+            });
+            appData.quiz = newQuiz;
+
+            localStorage.setItem('loveDataFull_v2', JSON.stringify(appData));
+            renderPage();
+            closeConfigModal();
+            alert("تم حفظ التعديلات بنجاح ✨");
+        }
+    </script>
+</body>
+
+</html>
